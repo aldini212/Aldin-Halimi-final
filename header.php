@@ -7,40 +7,41 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('single-page-layout'); ?>>
+<body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
 <div class="page-wrapper">
     <header class="site-header">
         <div class="container">
-            <div class="header-inner">
-                <div class="site-branding">
-                    <?php
-                    if (has_custom_logo()) {
-                        the_custom_logo();
-                    } else {
-                        echo '<h1 class="site-title"><a href="' . esc_url(home_url('/')) . '">' . get_bloginfo('name') . '</a></h1>';
-                    }
-                    ?>
-                </div>
-
-                <nav id="site-navigation" class="main-navigation">
-                    <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                        <span class="menu-toggle-bar"></span>
-                        <span class="menu-toggle-bar"></span>
-                        <span class="menu-toggle-bar"></span>
-                    </button>
-                    <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'menu_id'        => 'primary-menu',
-                        'container'      => false,
-                        'menu_class'     => 'primary-menu',
-                        'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="' . esc_url(home_url('/shop')) . '"><i class="fas fa-store"></i> Shop</a></li><li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="' . esc_url(home_url('/my-account')) . '"><i class="fas fa-user"></i> My Account</a></li><li class="menu-item menu-item-cart"><a href="' . esc_url(home_url('/cart')) . '" class="cart-link"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li></ul>',
-                    ));
-                    ?>
-                </nav>
+            <div class="site-branding">
+                <?php
+                if (has_custom_logo()) {
+                    the_custom_logo();
+                } else {
+                    echo '<h1 class="site-title"><a href="' . esc_url(home_url('/')) . '">' . get_bloginfo('name') . '</a></h1>';
+                }
+                ?>
             </div>
+
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="screen-reader-text"><?php esc_html_e('Menu', 'aldin-halimi'); ?></span>
+            </button>
+
+            <nav class="main-navigation" id="site-navigation">
+                <?php
+                // Output the menu
+                wp_nav_menu(array(
+                    'theme_location' => 'primary',
+                    'container'      => false,
+                    'menu_class'     => 'primary-menu',
+                    'fallback_cb'    => 'aldin_halimi_primary_menu_fallback',
+                    'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>'
+                ));
+                ?>
+            </nav>
         </div>
     </header>
 

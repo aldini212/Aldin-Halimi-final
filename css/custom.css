@@ -19,12 +19,193 @@ body {
 
 /* Header & Navigation */
 .site-header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
     position: fixed;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
     z-index: 1000;
-    padding: 1rem 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Main Navigation */
+.main-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.primary-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.primary-menu > li {
+    margin: 0 10px;
+    position: relative;
+}
+
+.primary-menu a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.primary-menu a i {
+    margin-right: 8px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.primary-menu a:hover {
+    color: #0073aa;
+}
+
+/* Cart item specific styles */
+.primary-menu .cart-item a {
+    position: relative;
+    padding-right: 10px;
+}
+
+.primary-menu .cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    position: relative;
+    width: 30px;
+    height: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #333;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+/* Active state for menu toggle */
+.menu-toggle.is-active .menu-toggle-bar:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.is-active .menu-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.is-active .menu-toggle-bar:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .main-navigation {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -280px;
+        bottom: 0;
+        width: 280px;
+        background: #fff;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 80px 20px 30px;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+    }
+    
+    .main-navigation.toggled {
+        display: block;
+        right: 0;
+    }
+    
+    .primary-menu {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+    }
+    
+    .primary-menu > li {
+        margin: 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .primary-menu a {
+        padding: 15px 20px;
+        width: 100%;
+    }
+    
+    /* Overlay when menu is open */
+    .menu-open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+    }
+    
+    .menu-open .menu-toggle {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+    }
+    
+    .menu-open .menu-toggle .menu-toggle-bar {
+        background: #fff;
+    }
+    
+    .menu-open::after {
+        display: block;
+    }
 }
 
 /* Cart Icon Styles */
@@ -58,8 +239,45 @@ body {
     font-weight: bold;
 }
 
-/* Navigation Menu */
-.primary-menu {
+/* Main Navigation */
+.main-navigation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Menu Toggle Button (Hamburger) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    margin-left: 15px;
+}
+
+.menu-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.header-menu {
     display: flex;
     list-style: none;
     margin: 0;
@@ -67,27 +285,142 @@ body {
     align-items: center;
 }
 
-.primary-menu > li {
-    margin-left: 1.5rem;
+.header-menu > li {
+    margin-left: 20px;
     position: relative;
 }
 
-.primary-menu a {
+.header-menu a {
     color: var(--primary);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    padding: 10px 0;
+    transition: color 0.3s ease;
 }
 
-.primary-menu a:hover {
+.header-menu a i {
+    margin-right: 8px;
+    font-size: 1.1em;
+    width: 20px;
+    text-align: center;
+}
+
+.header-menu a:hover {
     color: var(--secondary);
 }
 
-.primary-menu a i {
-    font-size: 1.1em;
+/* Cart Styles */
+.menu-item-cart .cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item-cart .cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: var(--secondary);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.menu-item-cart .cart-text {
+    margin-left: 5px;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 991px) {
+    .site-header .header-inner {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .site-branding {
+        z-index: 1002;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .header-actions {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 80px 0 30px;
+        transition: right 0.3s ease;
+        z-index: 1001;
+        overflow-y: auto;
+        margin: 0;
+    }
+    
+    .header-menu {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .header-menu > li {
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .header-menu a {
+        padding: 15px 0;
+        width: 100%;
+    }
+    
+    .header-menu a i {
+        width: 25px;
+    }
+    
+    /* When menu is open */
+    .menu-open .header-actions {
+        right: 0;
+    }
+    
+    /* Hamburger animation */
+    .menu-open .menu-toggle-bar:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+    
+    .menu-open .menu-toggle-bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-open .menu-toggle-bar:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+    
+    /* Overlay when menu is open */
+    .menu-open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
 }
 
 .header-container {

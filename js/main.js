@@ -1,14 +1,26 @@
 jQuery(document).ready(function($) {
     // Mobile menu toggle
-    $('.menu-toggle').on('click', function() {
-        $('.primary-menu').toggleClass('active');
+    $('.menu-toggle').on('click', function(e) {
+        e.preventDefault();
         $(this).toggleClass('active');
+        $('body').toggleClass('menu-open');
+        $('.header-actions').toggleClass('active');
     });
 
     // Close mobile menu when clicking a link
-    $('.primary-menu a').on('click', function() {
-        $('.primary-menu').removeClass('active');
+    $('.header-menu a').on('click', function() {
+        $('body').removeClass('menu-open');
         $('.menu-toggle').removeClass('active');
+        $('.header-actions').removeClass('active');
+    });
+
+    // Close menu when clicking outside
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.header-actions').length && !$(e.target).is('.menu-toggle')) {
+            $('body').removeClass('menu-open');
+            $('.menu-toggle').removeClass('active');
+            $('.header-actions').removeClass('active');
+        }
     });
 
     // Smooth scrolling for anchor links
@@ -33,4 +45,9 @@ jQuery(document).ready(function($) {
             $('.site-header').removeClass('scrolled');
         }
     });
+
+    // Add body class for touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+        $('body').addClass('touch-device');
+    }
 });

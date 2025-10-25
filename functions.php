@@ -7,6 +7,38 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Fallback menu function
+function aldin_halimi_primary_menu_fallback() {
+    ?>
+    <ul id="primary-menu" class="primary-menu">
+        <li class="menu-item">
+            <a href="<?php echo esc_url(home_url('/')); ?>">
+                <i class="fas fa-home"></i>
+                <span class="menu-text"><?php esc_html_e('Home', 'aldin-halimi'); ?></span>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="<?php echo esc_url(home_url('/sample-page')); ?>">
+                <i class="fas fa-file-alt"></i>
+                <span class="menu-text"><?php esc_html_e('Sample Page', 'aldin-halimi'); ?></span>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="<?php echo esc_url(home_url('/blog')); ?>">
+                <i class="fas fa-blog"></i>
+                <span class="menu-text"><?php esc_html_e('Blog', 'aldin-halimi'); ?></span>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="<?php echo esc_url(home_url('/contact')); ?>">
+                <i class="fas fa-envelope"></i>
+                <span class="menu-text"><?php esc_html_e('Contact', 'aldin-halimi'); ?></span>
+            </a>
+        </li>
+    </ul>
+    <?php
+}
+
 // Theme setup
 function aldin_halimi_setup() {
     // Add theme support
@@ -39,16 +71,19 @@ function aldin_halimi_scripts() {
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
     // Main stylesheet
-    wp_enqueue_style('aldin-halimi-style', get_stylesheet_uri(), array(), '1.0.0');
+    wp_enqueue_style('aldin-halimi-style', get_stylesheet_uri(), array(), '1.0.2');
     
     // Custom styles
-    wp_enqueue_style('aldin-halimi-custom', get_template_directory_uri() . '/css/custom.css', array(), '1.0.0');
+    wp_enqueue_style('aldin-halimi-custom', get_template_directory_uri() . '/css/custom.css', array(), '1.0.2');
     
     // Font Awesome
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
     
     // Main script
-    wp_enqueue_script('aldin-halimi-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('aldin-halimi-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.1', true);
+    
+    // Menu script
+    wp_enqueue_script('aldin-halimi-menu', get_template_directory_uri() . '/js/menu.js', array(), '1.0.0', true);
     
     // Shop page script
     if (is_page('shop')) {
