@@ -13,6 +13,7 @@
 <div class="page-wrapper">
     <header class="site-header">
         <div class="container">
+            <button id="dark-light-toggle" class="dark-light-btn">🌙</button>
             <div class="site-branding">
                 <?php
                 if (has_custom_logo()) {

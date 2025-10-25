@@ -35,6 +35,12 @@ function aldin_halimi_primary_menu_fallback() {
                 <span class="menu-text"><?php esc_html_e('Contact', 'aldin-halimi'); ?></span>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="<?php echo esc_url(home_url('/contact')); ?>">
+                <i class="fas fa-envelope"></i>
+                <span class="menu-text"><?php esc_html_e('Contact', 'aldin-halimi'); ?></span>
+            </a>
+        </li>
     </ul>
     <?php
 }
@@ -245,3 +251,34 @@ function aldin_halimi_entry_footer() {
         '</span>'
     );
 }
+// Add icons to menu items automatically based on title
+function custom_menu_icons($title, $item, $args, $depth) {
+    // List icons using Font Awesome (assumes Font Awesome is loaded)
+    $icons = [
+        'Home'       => 'fa-solid fa-house',
+        'Shop'       => 'fa-solid fa-store',
+        'Cart'       => 'fa-solid fa-cart-shopping',
+        'My Account ' => 'fa-solid fa-user',
+        'Blog'       => 'fa-solid fa-blog',
+        'Contact'    => 'fa-solid fa-envelope',
+        'About Us'   => 'fa-solid fa-circle-info'
+    ];
+
+    // Check if this item has a matching icon
+    foreach ($icons as $key => $icon_class) {
+        if (strcasecmp($item->title, $key) == 0) {
+            $title = '<i class="' . $icon_class . '"></i> ' . $title;
+            break;
+        }
+    }
+
+    return $title;
+}
+add_filter('nav_menu_item_title', 'custom_menu_icons', 10, 4);
+
+// Enqueue Font Awesome for icons
+function load_fontawesome_icons() {
+    wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+}
+add_action('wp_enqueue_scripts', 'load_fontawesome_icons');
+

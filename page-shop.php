@@ -70,7 +70,22 @@ get_header();
                         'image' => get_template_directory_uri() . '/images/snapback.jpg',
                         'category' => 'Accessories',
                         'tag' => 'Limited'
-                    )
+                    ),
+                    array(
+                        'title' => 'yankee  cap',
+                        'price' => '$35',
+                        'image' => get_template_directory_uri() . '/images/snapback1.jpg',
+                        'category' => 'Accessories',
+                        'tag' => 'Limited'
+                    ),
+                    array(
+                        'title' => 'Nike Jordan 4s',
+                        'price' => '$375',
+                        'image' => get_template_directory_uri() . '/images/jordan4.jpg',
+                        'category' => 'sneakers',
+                        'tag' => 'Limited'
+                    ),
+                    
                 );
 
                 foreach ($products as $product) :
