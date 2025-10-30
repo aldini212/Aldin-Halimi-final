@@ -12,33 +12,21 @@ function aldin_halimi_primary_menu_fallback() {
     ?>
     <ul id="primary-menu" class="primary-menu">
         <li class="menu-item">
-            <a href="<?php echo esc_url(home_url('/')); ?>">
+            <a href="/">
                 <i class="fas fa-home"></i>
                 <span class="menu-text"><?php esc_html_e('Home', 'aldin-halimi'); ?></span>
             </a>
         </li>
         <li class="menu-item">
-            <a href="<?php echo esc_url(home_url('/sample-page')); ?>">
-                <i class="fas fa-file-alt"></i>
-                <span class="menu-text"><?php esc_html_e('Sample Page', 'aldin-halimi'); ?></span>
+            <a href="/shop/">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="menu-text"><?php esc_html_e('Shop', 'aldin-halimi'); ?></span>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="<?php echo esc_url(home_url('/blog')); ?>">
-                <i class="fas fa-blog"></i>
-                <span class="menu-text"><?php esc_html_e('Blog', 'aldin-halimi'); ?></span>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="<?php echo esc_url(home_url('/contact')); ?>">
-                <i class="fas fa-envelope"></i>
-                <span class="menu-text"><?php esc_html_e('Contact', 'aldin-halimi'); ?></span>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="<?php echo esc_url(home_url('/contact')); ?>">
-                <i class="fas fa-envelope"></i>
-                <span class="menu-text"><?php esc_html_e('Contact', 'aldin-halimi'); ?></span>
+        <li class="menu-item menu-item-cart">
+            <a href="/cart/">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="menu-text"><?php esc_html_e('Cart', 'aldin-halimi'); ?></span>
             </a>
         </li>
     </ul>
@@ -73,20 +61,36 @@ add_action('after_setup_theme', 'aldin_halimi_setup');
 
 // Enqueue styles and scripts
 function aldin_halimi_scripts() {
+    // Theme stylesheet
+    wp_enqueue_style('aldin-halimi-style', get_stylesheet_uri(), array(), '1.0.0');
+    
     // Google Fonts
-    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    
-    // Main stylesheet
-    wp_enqueue_style('aldin-halimi-style', get_stylesheet_uri(), array(), '1.0.2');
-    
-    // Custom styles
-    wp_enqueue_style('aldin-halimi-custom', get_template_directory_uri() . '/css/custom.css', array(), '1.0.2');
+    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap', array(), null);
     
     // Font Awesome
-    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css', array(), '6.0.0');
     
-    // Main script
-    wp_enqueue_script('aldin-halimi-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.1', true);
+    // Custom CSS
+    wp_enqueue_style('aldin-halimi-custom', get_template_directory_uri() . '/css/custom.css', array(), '1.0.0');
+    
+    // Product Gallery CSS
+    if (is_singular('product')) {
+        wp_enqueue_style('aldin-halimi-product-gallery', get_template_directory_uri() . '/css/product-gallery.css', array(), '1.0.0');
+    }
+    
+    // Theme JavaScript
+    wp_enqueue_script('aldin-halimi-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
+    
+    // Localize script for AJAX
+    wp_localize_script('aldin-halimi-script', 'aldinHalimi', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('aldin-halimi-nonce')
+    ));
+    
+    // Comment reply script
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
     
     // Menu script
     wp_enqueue_script('aldin-halimi-menu', get_template_directory_uri() . '/js/menu.js', array(), '1.0.0', true);
@@ -278,7 +282,19 @@ add_filter('nav_menu_item_title', 'custom_menu_icons', 10, 4);
 
 // Enqueue Font Awesome for icons
 function load_fontawesome_icons() {
-    wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
 }
-add_action('wp_enqueue_scripts', 'load_fontawesome_icons');
+add_action('wp_enqueue_scripts', 'load_fontawesome_icons', 5); // Load early with priority 5
+
+// Add simple cart link to the navigation menu
+function add_cart_to_menu($items, $args) {
+    if ($args->theme_location == 'primary') {
+        $cart_icon = '<i class="fas fa-shopping-cart"></i>';
+        $items .= '<li class="menu-item menu-item-cart">';
+        $items .= '<a href="/cart/">' . $cart_icon . ' Cart</a>';
+        $items .= '</li>';
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'add_cart_to_menu', 10, 2);
 

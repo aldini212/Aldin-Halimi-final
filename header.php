@@ -24,24 +24,28 @@
                 ?>
             </div>
 
-            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                <span class="menu-toggle-bar"></span>
-                <span class="menu-toggle-bar"></span>
-                <span class="menu-toggle-bar"></span>
-                <span class="screen-reader-text"><?php esc_html_e('Menu', 'aldin-halimi'); ?></span>
-            </button>
-
-            <nav class="main-navigation" id="site-navigation">
-                <?php
-                // Output the menu
-                wp_nav_menu(array(
-                    'theme_location' => 'primary',
-                    'container'      => false,
-                    'menu_class'     => 'primary-menu',
-                    'fallback_cb'    => 'aldin_halimi_primary_menu_fallback',
-                    'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>'
-                ));
-                ?>
+            <!-- Custom Navigation Menu -->
+            <nav class="main-navigation" id="main-nav">
+                <ul class="primary-menu">
+                    <li class="menu-item">
+                        <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?php echo esc_url(home_url('/shop/')); ?>">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Shop</span>
+                        </a>
+                    </li>
+                    <li class="menu-item menu-item-cart">
+                        <a href="<?php echo esc_url(home_url('/cart/')); ?>">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Cart</span>
+                        </a>
+                    </li>
+                </ul>
             </nav>
         </div>
     </header>

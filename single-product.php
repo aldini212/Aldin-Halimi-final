@@ -36,25 +36,30 @@ $product = [
 ];
 ?>
 
-<div class="single-product-page section-padding">
-    <div class="container">
-        <div class="product-breadcrumb">
+<div class="single-product-page">
+    <div class="container" style="padding: 0;">
+        <div class="product-breadcrumb" style="padding: 15px 20px; margin: 0 -20px 20px; background: #f8f8f8;">
             <a href="<?php echo home_url('/shop'); ?>">Shop</a>
-            <span>/</span>
+            <span> / </span>
             <a href="#">Sneakers</a>
-            <span>/</span>
+            <span> / </span>
             <span><?php echo $product['name']; ?></span>
         </div>
 
         <div class="product-detail">
             <div class="product-gallery">
-                <div class="main-image">
-                    <img src="<?php echo $product['images'][0]; ?>" alt="<?php echo $product['name']; ?>" id="main-product-image">
+                <div class="main-image-container">
+                    <img src="<?php echo $product['images'][0]; ?>" 
+                         alt="<?php echo esc_attr($product['name']); ?>" 
+                         class="main-image" 
+                         id="main-product-image">
                 </div>
-                <div class="thumbnail-images">
+                <div class="thumbnail-container">
                     <?php foreach ($product['images'] as $index => $image): ?>
-                        <div class="thumbnail <?php echo $index === 0 ? 'active' : ''; ?>" data-image="<?php echo $image; ?>">
-                            <img src="<?php echo $image; ?>" alt="<?php echo $product['name']; ?> - View <?php echo $index + 1; ?>">
+                        <div class="thumbnail <?php echo $index === 0 ? 'active' : ''; ?>" 
+                             data-image="<?php echo esc_url($image); ?>">
+                            <img src="<?php echo esc_url($image); ?>" 
+                                 alt="<?php echo esc_attr($product['name'] . ' - View ' . ($index + 1)); ?>">
                         </div>
                     <?php endforeach; ?>
                 </div>
