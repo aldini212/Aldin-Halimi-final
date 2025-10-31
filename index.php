@@ -1,9 +1,6 @@
 <?php
-/**
- * The main template file
- */
-
-get_header(); ?>
+get_header();
+?>
 
 <main id="primary" class="site-main">
     <?php
@@ -16,7 +13,8 @@ get_header(); ?>
             <?php
         endif;
 
-        /* Start the Loop */
+        get_template_part('template-parts/coming-soon');
+
         while (have_posts()) :
             the_post();
             get_template_part('template-parts/content', get_post_type());
@@ -27,7 +25,7 @@ get_header(); ?>
         get_template_part('template-parts/content', 'none');
     endif;
     ?>
-</main><!-- #main -->
+</main>
 
 <?php
 get_sidebar();

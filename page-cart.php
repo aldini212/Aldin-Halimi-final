@@ -1,7 +1,5 @@
 <?php
-/**
- * Template Name: Shopping Cart
- */
+
 
 get_header();
 ?>
@@ -24,7 +22,7 @@ get_header();
                 </div>
                 
                 <div class="cart-items-list" id="cart-items">
-                    <!-- Cart items will be loaded here via JavaScript -->
+                    
                     <div class="cart-empty">
                         <i class="fas fa-shopping-cart"></i>
                         <p>Your cart is empty</p>
@@ -58,12 +56,12 @@ get_header();
     </div>
 </div>
 
-<!-- Quick View Modal -->
+
 <div id="quick-view-modal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
         <div class="quick-view-content">
-            <!-- Content will be loaded here via JavaScript -->
+        
         </div>
     </div>
 </div>

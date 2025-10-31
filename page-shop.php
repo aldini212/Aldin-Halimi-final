@@ -1,13 +1,8 @@
 <?php
-/**
- * Template Name: Streetwear Shop
- */
-
 get_header();
 ?>
 
 <div class="streetwear-shop">
-    <!-- Hero Banner -->
     <div class="shop-hero" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/streetwear-bg.jpg');">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -17,7 +12,6 @@ get_header();
         </div>
     </div>
 
-    <!-- Featured Section -->
     <section id="featured" class="featured-section">
         <div class="container">
             <div class="section-header">
@@ -27,7 +21,6 @@ get_header();
 
             <div class="products-grid">
                 <?php
-                // Sample streetwear products
                 $products = array(
                     array(
                         'title' => 'AIR JORDAN 1 RETRO HIGH',
@@ -129,7 +122,6 @@ get_header();
         </div>
     </section>
 
-    <!-- Categories Banner -->
     <div class="categories-banner">
         <div class="category-item" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/mens-category.jpg');">
             <div class="category-content">
@@ -145,7 +137,6 @@ get_header();
         </div>
     </div>
 
-    <!-- Newsletter Section -->
     <section class="newsletter-section">
         <div class="container">
             <div class="newsletter-content">

@@ -1349,9 +1349,10 @@ img {
     gap: 6px;
 }
 
-/* Global Container Styles */
-*,
-*::before,
+#coming-soon {
+    background: #fff;
+    text-align: center;
+    padding: 80px 0;
 *::after {
     box-sizing: border-box;
     margin: 0;
@@ -1555,6 +1556,121 @@ body.dark-mode .tab-content {
 /* Optional: Dark mode for hero section */
 body.dark-mode .hero::after {
     background: rgba(0,0,0,0.5);
+}
+
+#coming-soon {
+    background: #fff;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.coming-soon-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.product-showcase {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+}
+
+.product-image {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover img {
+    transform: scale(1.05);
+}
+
+.product-details {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    gap: 15px;
+}
+
+.time-block {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.time-block span {
+    display: block;
+}
+
+.time-block .days,
+.time-block .hours,
+.time-block .minutes,
+.time-block .seconds {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1;
+}
+
+.time-block .label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.notify-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.notify-form input[type="email"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .coming-soon-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .product-details {
+        text-align: center;
+    }
+    
+    .countdown-timer {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
 
 /* Button Styling */

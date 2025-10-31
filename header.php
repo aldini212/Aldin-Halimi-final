@@ -24,7 +24,7 @@
                 ?>
             </div>
 
-            <!-- Custom Navigation Menu -->
+            
             <nav class="main-navigation" id="main-nav">
                 <ul class="primary-menu">
                     <li class="menu-item">
@@ -51,7 +51,7 @@
     </header>
 
     <main id="main-content">
-        <!-- Hero Section -->
+       
         <section class="fullscreen-section hero" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/hero.jpg');">
             <div class="overlay"></div>
             <div class="container">
@@ -72,46 +72,10 @@
             </a>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <h2>About Us</h2>
-                    <div class="divider"></div>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>Welcome to <?php bloginfo('name'); ?>, where we create amazing experiences and deliver exceptional results. Our team of professionals is dedicated to providing the best service in the industry.</p>
-                        <p>With years of experience and a passion for excellence, we strive to exceed our clients' expectations with every project we undertake.</p>
-                        <div class="features-grid">
-                            <div class="feature">
-                                <div class="feature-icon">
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h3>Quality</h3>
-                                <p>We never compromise on quality and always deliver the best.</p>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">
-                                    <i class="fas fa-lightbulb"></i>
-                                </div>
-                                <h3>Innovation</h3>
-                                <p>We stay ahead with the latest trends and technologies.</p>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h3>Team</h3>
-                                <p>Our team consists of dedicated professionals.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       
+        
 
-        <!-- Contact Section -->
+       
         <section id="contact" class="section-padding bg-light">
             <div class="container">
                 <div class="section-header">
@@ -127,7 +91,7 @@
                             </div>
                             <div class="info-content">
                                 <h3>Email Us</h3>
-                                <p>info@example.com</p>
+                                <p>aldinihalimi@gmail.com</p>
                             </div>
                         </div>
                         <div class="info-item">
@@ -145,12 +109,11 @@
                             </div>
                             <div class="info-content">
                                 <h3>Visit Us</h3>
-                                <p>123 Business Street, City, Country</p>
+                                <p>123 Business Street, Podujev, kosova</p>
                             </div>
                         </div>
                     </div>
-                    <div class="contact-form">
-                        <?php echo do_shortcode('[contact-form-7 id="123" title="Contact form 1"]'); ?>
+                    
                     </div>
                 </div>
             </div>

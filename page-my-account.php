@@ -1,11 +1,7 @@
 <?php
-/**
- * Template Name: My Account Dashboard
- */
-
 get_header();
 
-// Check if user is logged in
+if (!is_user_logged_in())
 if (!is_user_logged_in()) {
     wp_redirect(wp_login_url(get_permalink()));
     exit;
@@ -22,7 +18,6 @@ $current_user = wp_get_current_user();
         </div>
 
         <div class="dashboard-grid">
-            <!-- User Profile -->
             <div class="dashboard-card profile-card">
                 <div class="card-header">
                     <h2><i class="fas fa-user"></i> My Profile</h2>
@@ -41,7 +36,6 @@ $current_user = wp_get_current_user();
                 </div>
             </div>
 
-            <!-- Quick Stats -->
             <div class="dashboard-card stats-card">
                 <div class="card-header">
                     <h2><i class="fas fa-chart-line"></i> My Stats</h2>
@@ -64,7 +58,6 @@ $current_user = wp_get_current_user();
                 </div>
             </div>
 
-            <!-- Recent Orders -->
             <div class="dashboard-card orders-card">
                 <div class="card-header">
                     <h2><i class="fas fa-shopping-bag"></i> Recent Orders</h2>
@@ -88,7 +81,6 @@ $current_user = wp_get_current_user();
                 </div>
             </div>
 
-            <!-- Quick Actions -->
             <div class="dashboard-card actions-card">
                 <div class="card-header">
                     <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
